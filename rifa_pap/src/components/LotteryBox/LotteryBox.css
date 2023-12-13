@@ -8,16 +8,35 @@ body {
     height: 100vh;
   }
   
-  .lottery-box {
-    text-align: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-  }
+.tres {
+  font-size: 7rem;
+  color: #FE8266;
+}
 
-/* En tu archivo LotteryBox.css o donde tengas tus estilos CSS */
+.dos {
+  font-size: 11rem;
+  color: #364F6B;
+}
 
+.uno {
+  font-size: 15rem;
+  color: #EC8B00;
+}
+
+.lottery-box {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.second-column {
+  position: relative;
+  left: 9rem;
+}
+
+  /* Update your CSS styles */
 .first-column {
   width: 500px;
   height: 500px;
@@ -33,25 +52,23 @@ body {
   align-items: center;
 }
 
+.winner-name,
+.winner-prize {
+  margin-bottom: 1.5rem; /* Adjust margin as needed */
+}
 
-  .second-column {
-    position: relative;
-    left: 9rem;
-  }
+.winner-name {
+  font-size: 3rem;
+}
 
-  .winner-number {
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
-    position: relative;
-    top: 4rem;
-  }
-  
-  .winner-name {
-    position: absolute;
-    top: 6rem;
-    font-size: 3rem;
-  }
+.winner-prize {
+  font-size: 2rem;
+}
 
+.winner-number {
+  margin-bottom: 7rem;
+  font-size: 2.5rem;
+}
   .winner-table {
     position: relative;
     margin-left: 50rem;
@@ -114,6 +131,8 @@ body {
   }
   
   .next {
+    color: white;
+    font-size: 2rem;
     position: relative;
     margin-bottom: -20px;
   }
