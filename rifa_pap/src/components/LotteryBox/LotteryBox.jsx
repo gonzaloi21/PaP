@@ -1,6 +1,7 @@
   import React, { useState, useEffect } from 'react';
   import './LotteryBox.css';
   import WinnerTable from '../WinnerTable/WinnerTable';
+  import Confetti from 'react-confetti';
 
   const LotteryBox = () => {
     const [winnerNumber, setWinnerNumber] = useState('');
@@ -8,6 +9,8 @@
     const [winners, setWinners] = useState([]); // Lista de ganadores y premios
     const [shouldUpdateTable, setShouldUpdateTable] = useState(false);
     const [nextPrize, setNextPrize] = useState('');
+    const [confettiActive, setConfettiActive] = useState(false);
+    const [prizeWon, setPrizeWon] = useState('');
 
     useEffect(() => {
       const obtainWinners = async () => {
@@ -33,7 +36,7 @@
           console.log(nextPrizeData);
           
           // Hay un próximo premio
-          setNextPrize(`PRÓXIMO PREMIO: ${nextPrizeData.prize_name} de ${nextPrizeData.brand}`); // Ajusta según la estructura de tu modelo
+          setNextPrize(`A Continuación: ${nextPrizeData.prize_name} de ${nextPrizeData.brand}`); // Ajusta según la estructura de tu modelo
           
         } catch (error) {
           console.error(error);
@@ -43,21 +46,33 @@
       fetchNextPrize();  
     },)
 
-    // useEffect(() => {
-    //   if (countdown > 0) {
-    //     const timerId = setInterval(() => {
-    //       setCountdown((prevCountdown) => prevCountdown - 1);
-    //       setWinnerName(countdown)
-    //     }, 1000);
-  
-    //     return () => clearInterval(timerId);
-    //   }});
-
-// ...
-
 const handleDraw = async (type) => {
   try {
-    // setCountdown(3);
+
+    //sacamos el confeti si es que hay
+    setConfettiActive(false);
+
+    ///////////////////////CONTADOR///////////////////////////////
+    setWinnerName('');
+    setPrizeWon('');
+    //contador 3 segundos
+
+    // Update the winnerNumber with a countdown
+    setWinnerNumber(<b className='tres'>3</b>);
+    await new Promise(resolve => setTimeout(() => {
+      setWinnerNumber(<b className='dos'>2</b>);
+      resolve();
+    }, 1000));
+    await new Promise(resolve => setTimeout(() => {
+      setWinnerNumber(<b className='uno'>1</b>);
+      resolve();
+    }, 1000));
+    //UN SEGUNDO MAS
+    await new Promise(resolve => setTimeout(() => {
+      resolve();
+    }, 1000));
+    ///////////////////////CONTADOR///////////////////////////////
+
     const response = await fetch('http://localhost:3000/participants/sort', {
       method: 'POST',
       headers: {
@@ -84,9 +99,18 @@ const handleDraw = async (type) => {
     const data = await response.json();
 
     if (type === 'sorteo' && data.winner.winner) {
+
+      /////////////////////CONFETI////////////////////////////////
+      setConfettiActive(true);
+      setTimeout(() => {
+        setConfettiActive(false);
+      }, 3500);
+      /////////////////////CONFETI////////////////////////////////
+
       // Solo actualiza winnerName y winnerNumber si hay premios disponibles
-      setWinnerNumber(data.winner.number);
+      setWinnerNumber(`Rifa N° ${data.winner.number}`);
       setWinnerName(`¡Felicidades ${data.winner.name}!`);
+      setPrizeWon(`${data.winner.prize_name} de ${data.winner.brand}`);
 
       // Agrega el ganador a la lista de ganadores y premios
       setWinners((prevWinners) => [
@@ -96,7 +120,7 @@ const handleDraw = async (type) => {
         }
       ]);
       setShouldUpdateTable(true);
-    
+
     } else if (type === 'agua') {
       setWinnerName(`¡Al agua ${data.winner.name} ${data.winner.lastname}!`);
     }
@@ -123,6 +147,7 @@ const handleDraw = async (type) => {
 
         const data = await response.json();
         setWinnerNumber(data.number);
+        setPrizeWon('');
         setWinnerName(`Esperando Sorteo...`);
 
         // Reiniciar la lista de ganadores y premios
@@ -135,9 +160,12 @@ const handleDraw = async (type) => {
 
     return (
       <div className="lottery-box">
-        <div className="first-column">
+      {/* Render confetti if confettiActive is true */}
+      {confettiActive && <Confetti />}
+      <div className="first-column">
+          <div className="winner-prize">{prizeWon}</div>
           <div className="winner-name">{winnerName}</div>
-          <div className="winner-number">Rifa N°{winnerNumber}</div>
+          <div className="winner-number">{winnerNumber}</div>
           <div className="buttons">
             <button className="sortear" onClick={() => handleDraw('sorteo')}>
               Sortear
