@@ -1,0 +1,15 @@
+body {
+    background-color: #EC8B00;
+}
+
+/* Estilo para separar el LotteryBox y WinnerTable */
+.content {
+    display: flex;
+    justify-content: space-around; /* Cambiado a space-around para agregar espacio entre los elementos */
+    align-items: center;
+    height: 100vh;
+  }
+
+  .box {
+    margin-right: 12rem;
+  }

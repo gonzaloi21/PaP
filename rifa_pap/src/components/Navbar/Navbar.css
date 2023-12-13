@@ -1,0 +1,74 @@
+/* Navbar.css */
+
+
+.navbar {
+  background-color: #364F6B;
+  height: 5rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between; /* Alinea los elementos hacia los extremos horizontales */
+  align-items: center;
+  padding: 0 20px; /* Ajusta el espacio interno según tus necesidades */
+}
+
+.navbar_logo img {
+  width: 50px;
+  height: auto;
+  margin-left: 3rem;
+}
+
+.foto {
+  width: 200px; /* Ajusta el ancho según tus necesidades */
+  height: 200px; /* Ajusta la altura según tus necesidades */
+  border-radius: 50%; /* Hace que la imagen sea redonda */
+  transition: transform 0.3s ease-in-out; /* Agrega una transición suave al efecto de aumento */
+  margin-right: 1rem;
+}
+
+.foto:hover, .instagram-icon:hover {
+  transform: scale(1.2); /* Aumenta el tamaño al pasar el mouse por encima (ajusta según tus necesidades) */
+}
+
+.words {
+  display: flex;
+  align-items: center;
+  direction: row;
+  text-align: center; /* Centra el contenido horizontalmente */
+}
+
+.title {
+  margin-left: 2rem;
+  color: white;
+}
+
+.subtitle {
+  margin-top: 5px; /* Ajusta el espacio entre el título y el subtítulo según tus necesidades */
+  margin-bottom: 0;
+  color: white;
+}
+
+.instagram {
+  display: flex;
+  align-items: center;
+}
+
+.instagram-link {
+  text-decoration: none;
+  color: white;
+}
+
+.instagram-icon {
+  font-size: 2rem;
+  border-radius: 50%;
+  background-color: #e4405f;
+  padding: 0.5rem;
+  margin-right: -2rem; /* Ajusta el espacio entre el icono y el nombre de Instagram según tus necesidades */
+}
+
+.ig_pap {
+  margin: 3rem;
+  color: black;
+}

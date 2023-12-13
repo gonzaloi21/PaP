@@ -1,0 +1,67 @@
+/* Cambia la altura fija según tus necesidades */
+.datos {
+  height: 1000px; /* Establece una altura fija para las filas */
+  overflow: hidden;
+}
+
+/* Habilita el desplazamiento vertical si hay demasiados elementos */
+.tabla-container {
+  max-height: 400px; /* Establece una altura máxima para la tabla */
+  overflow-y: auto; /* Agregado para permitir desplazamiento vertical */
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Barra de desplazamiento para navegadores basados en WebKit (Chrome, Safari) */
+.tabla-container::-webkit-scrollbar {
+  width: 4px; /* Ancho de la barra de desplazamiento */
+}
+
+.tabla-container::-webkit-scrollbar-track {
+  background-color: #f2f2f2; /* Color de fondo de la barra de desplazamiento */
+}
+
+.tabla-container::-webkit-scrollbar-thumb {
+  background-color: #ccc; /* Color del "pulgón" de la barra de desplazamiento */
+  border-radius: 6px; /* Bordes redondeados */
+}
+
+.tabla-container::-webkit-scrollbar-thumb:hover {
+  background-color: #999; /* Color del "pulgón" cuando se pasa el ratón sobre él */
+}
+
+.tabla-campeones {
+    width: 60rem;
+    margin-top: 20px;
+  }
+  
+  .encabezado th {
+    background-color: #364F6B;
+    color: #fff;
+    font-weight: bold;
+    height: 50px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+  
+  .contenido-tabla .datos {
+    background-color: #f2f2f2;
+    height: 30px; /* Ajusta la altura de las filas según sea necesario */
+    border-bottom: 3px solid #ddd; /* Agrega una línea entre las filas */
+    max-height: 5px;
+  }
+  
+  .dato-numero, .premio-numero {
+    width: 9%;
+    text-align: center;
+  }
+  .dato-nombre, .dato-marca, .dato-premio, .dato-apellido, .dato-cel {
+    width: 80px;
+    text-align: center;
+  }
+
+
+  
+  /* Estilos adicionales si es necesario */
+  
